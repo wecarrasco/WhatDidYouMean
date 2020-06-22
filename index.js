@@ -27,6 +27,10 @@ const exec = async () => {
         if (response === "y") {
           jsonUtils.saveNewSuggestedCommand(command, suggestedCommands[0]);
           execCommand(suggestedCommands[0], arguments);
+        } else {
+          console.log(
+            "Pronto mi desarrollador agregara el comando que quieres correr."
+          );
         }
       }
     } else {

@@ -18,20 +18,18 @@ const exec = async () => {
   } else {
     const suggestedCommands = candidates(command);
     if (Array.isArray(suggestedCommands)) {
-      if (suggestedCommands.length === 1) {
-        const response = await inputDecision(suggestedCommands[0]).then(
-          (res) => {
-            return res;
-          }
-        );
-        if (response === "y") {
-          jsonUtils.saveNewSuggestedCommand(command, suggestedCommands[0]);
-          execCommand(suggestedCommands[0], arguments);
-        } else {
-          console.log(
-            "Pronto mi desarrollador agregara el comando que quieres correr."
-          );
+      const response = await inputDecision(suggestedCommands[0]).then(
+        (res) => {
+          return res;
         }
+      );
+      if (response === "y") {
+        jsonUtils.saveNewSuggestedCommand(command, suggestedCommands[0]);
+        execCommand(suggestedCommands[0], arguments);
+      } else {
+        console.log(
+          "Pronto mi desarrollador agregara el comando que quieres correr."
+        );
       }
     } else {
       console.log(suggestedCommands.message);
